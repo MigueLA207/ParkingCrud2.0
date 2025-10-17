@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ymEmfeQGjmmMfHuCQHgTgwTirTeNdhKJkpN94IBdK6w=",
+  "Source": "CrudPark.Api",
+  "BasePath": "_content/CrudPark.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
