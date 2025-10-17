@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qewZRNPqB4s0uBM/3rPWjoZBdTkgU91u5YcGz08mHCcW5V+f9rYZErsfucYagYJU+SMKvXGb2gni8PX6/pXz/w==",
+  "dgSpecHash": "AWfFddIBfDQ=",
   "success": true,
-  "projectFilePath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Application/CrudPark.Application.csproj",
+  "projectFilePath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Application\\CrudPark.Application.csproj",
   "expectedPackageFiles": [
-    "/home/csharp/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512"
+    "C:\\Users\\maria\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
   ],
   "logs": []
 }

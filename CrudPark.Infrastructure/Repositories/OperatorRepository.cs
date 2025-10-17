@@ -34,5 +34,18 @@ namespace CrudPark.Infrastructure.Repositories
             // FindAsync es un método de EF Core optimizado para buscar por clave primaria.
             return await _context.Operators.FindAsync(id);
         }
+        
+        public async Task UpdateAsync(Operator entity)
+        {
+            _context.Operators.Update(entity);
+            await _context.SaveChangesAsync(); // Guarda los cambios en la BD
+        }
+        
+        public async Task DeleteAsync(Operator entity)
+        {
+            entity.IsActive = false;
+            _context.Operators.Update(entity);
+            await _context.SaveChangesAsync();
+        }
     }
 }

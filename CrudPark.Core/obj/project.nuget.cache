@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q+BXuURMtAYseIy2BAIQggwgdkfsYwkv1a1mzwyZlFfknLSrRi+brozy88ou2iVrcP+iLtAwv8l4cIH8tCvpSg==",
+  "dgSpecHash": "VXzPQdfl2r8=",
   "success": true,
-  "projectFilePath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Core/CrudPark.Core.csproj",
+  "projectFilePath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Core\\CrudPark.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

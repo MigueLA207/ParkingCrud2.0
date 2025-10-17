@@ -9,3 +9,15 @@
 /home/csharp/RiderProjects/CrudPark/CrudPark.Core/obj/Debug/net8.0/refint/CrudPark.Core.dll
 /home/csharp/RiderProjects/CrudPark/CrudPark.Core/obj/Debug/net8.0/CrudPark.Core.pdb
 /home/csharp/RiderProjects/CrudPark/CrudPark.Core/obj/Debug/net8.0/ref/CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Debug\net8.0\CrudPark.Core.deps.json
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Debug\net8.0\CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Debug\net8.0\CrudPark.Core.pdb
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.AssemblyInfoInputs.cache
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.AssemblyInfo.cs
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.csproj.CoreCompileInputs.cache
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.sourcelink.json
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\refint\CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\CrudPark.Core.pdb
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\obj\Debug\net8.0\ref\CrudPark.Core.dll

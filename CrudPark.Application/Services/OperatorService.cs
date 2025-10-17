@@ -72,5 +72,42 @@ namespace CrudPark.Application.Services
                 IsActive = op.IsActive
             };
         }
+        
+        public async Task<OperatorDto?> UpdateOperatorAsync(int id, UpdateOperatorDto updateOperatorDto)
+        {
+            var existingOperator = await _operatorRepository.GetByIdAsync(id);
+            if (existingOperator == null)
+            {
+                return null; // Operador no encontrado
+            }
+
+            // Mapeamos los campos del DTO a la entidad existente
+            existingOperator.FullName = updateOperatorDto.FullName;
+            existingOperator.Email = updateOperatorDto.Email;
+            existingOperator.IsActive = updateOperatorDto.IsActive;
+
+            await _operatorRepository.UpdateAsync(existingOperator);
+
+            // Mapeamos la entidad actualizada a un DTO para la respuesta
+            return new OperatorDto
+            {
+                OperatorId = existingOperator.OperatorId,
+                FullName = existingOperator.FullName,
+                Email = existingOperator.Email,
+                IsActive = existingOperator.IsActive
+            };
+        }
+
+        public async Task<bool> DeleteOperatorAsync(int id)
+        {
+            var existingOperator = await _operatorRepository.GetByIdAsync(id);
+            if (existingOperator == null)
+            {
+                return false; 
+            }
+
+            await _operatorRepository.DeleteAsync(existingOperator);
+            return true;
+        }
     }
 }
