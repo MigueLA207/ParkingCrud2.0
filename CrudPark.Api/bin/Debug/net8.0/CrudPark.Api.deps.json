@@ -272,12 +272,18 @@
           "CrudPark.Core": "1.0.0"
         },
         "runtime": {
-          "CrudPark.Application.dll": {}
+          "CrudPark.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "CrudPark.Core/1.0.0": {
         "runtime": {
-          "CrudPark.Core.dll": {}
+          "CrudPark.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "CrudPark.Infrastructure/1.0.0": {
@@ -288,7 +294,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
         },
         "runtime": {
-          "CrudPark.Infrastructure.dll": {}
+          "CrudPark.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

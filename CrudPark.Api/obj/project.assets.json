@@ -1326,35 +1326,43 @@
     ]
   },
   "packageFolders": {
-    "/home/csharp/.nuget/packages/": {}
+    "C:\\Users\\maria\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/csharp/RiderProjects/CrudPark/CrudPark.Api/CrudPark.Api.csproj",
+      "projectUniqueName": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Api\\CrudPark.Api.csproj",
       "projectName": "CrudPark.Api",
-      "projectPath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Api/CrudPark.Api.csproj",
-      "packagesPath": "/home/csharp/.nuget/packages/",
-      "outputPath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Api/obj/",
+      "projectPath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Api\\CrudPark.Api.csproj",
+      "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/csharp/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/csharp/RiderProjects/CrudPark/CrudPark.Application/CrudPark.Application.csproj": {
-              "projectPath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Application/CrudPark.Application.csproj"
+            "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Application\\CrudPark.Application.csproj": {
+              "projectPath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Application\\CrudPark.Application.csproj"
             },
-            "/home/csharp/RiderProjects/CrudPark/CrudPark.Infrastructure/CrudPark.Infrastructure.csproj": {
-              "projectPath": "/home/csharp/RiderProjects/CrudPark/CrudPark.Infrastructure/CrudPark.Infrastructure.csproj"
+            "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Infrastructure\\CrudPark.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\maria\\RiderProjects\\ParkingCrud\\CrudPark.Infrastructure\\CrudPark.Infrastructure.csproj"
             }
           }
         }
@@ -1363,7 +1371,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -1397,7 +1411,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

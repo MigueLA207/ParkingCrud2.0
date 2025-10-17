@@ -5,6 +5,8 @@ using CrudPark.Infrastructure.Data;
 using CrudPark.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // --- 1. Configuración de Servicios (Inyección de Dependencias) ---
@@ -22,6 +24,11 @@ builder.Services.AddDbContext<ParkingDbContext>(options =>
 builder.Services.AddScoped<IOperatorRepository, OperatorRepository>();
 // Cuando se pida un IOperatorService, se entregará un OperatorService
 builder.Services.AddScoped<IOperatorService, OperatorService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IMembershipRepository, MembershipRepository>();
+builder.Services.AddScoped<IMembershipService, MembershipService>();
+builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<IRateService, RateService>();
 
 // Registra los servicios necesarios para los controladores de API
 builder.Services.AddControllers();

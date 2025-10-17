@@ -53,6 +53,33 @@ namespace CrudPark.Api.Controllers
             return Ok(operatorDto);
         }
         
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateOperator(int id, [FromBody] UpdateOperatorDto updateDto)
+        {
+            var updatedOperator = await _operatorService.UpdateOperatorAsync(id, updateDto);
+
+            if (updatedOperator == null)
+            {
+                return NotFound($"Operator with ID {id} not found.");
+            }
+
+            return Ok(updatedOperator);
+        }
+
+        // DELETE /api/operators/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOperator(int id)
+        {
+            var success = await _operatorService.DeleteOperatorAsync(id);
+
+            if (!success)
+            {
+                return NotFound($"Operator with ID {id} not found.");
+            }
+
+            return NoContent(); // 204 NoContent es la respuesta estándar para un DELETE exitoso
+        }
+        
         
         
         
