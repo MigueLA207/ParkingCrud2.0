@@ -1,49 +1,80 @@
-// --- Usings necesarios ---
+// --- USINGS NECESARIOS ---
+using CrudPark.Application.Configuration;
 using CrudPark.Application.Interfaces;
 using CrudPark.Application.Services;
 using CrudPark.Infrastructure.Data;
 using CrudPark.Infrastructure.Repositories;
+using CrudPark.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
+// --- CONFIGURACIONES GLOBALES ---
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. Configuración de Servicios (Inyección de Dependencias) ---
+// =================================================================
+// 1. CONFIGURACIÓN DE SERVICIOS (INYECCIÓN DE DEPENDENCIAS)
+// =================================================================
 
-// Lee la cadena de conexión del archivo appsettings.json
+// --- Conexión a la Base de Datos ---
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// Registra el DbContext para que pueda ser inyectado en otras clases
 builder.Services.AddDbContext<ParkingDbContext>(options =>
     options.UseNpgsql(connectionString)
-        .UseSnakeCaseNamingConvention());
+        .UseSnakeCaseNamingConvention()); // Opcional, si sigues este patrón
 
-// Registra las interfaces con sus implementaciones concretas
-// Cuando se pida un IOperatorRepository, se entregará un OperatorRepository
+// --- Configuración de CORS ---
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            // ¡REVISA QUE EL PUERTO SEA EL CORRECTO PARA TU FRONTEND!
+            policy.WithOrigins("http://localhost:5173", "http://localhost:5174")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+// --- Configuración de Email ---
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddTransient<IEmailService, EmailService>();
+
+// --- Repositorios ---
 builder.Services.AddScoped<IOperatorRepository, OperatorRepository>();
-// Cuando se pida un IOperatorService, se entregará un OperatorService
-builder.Services.AddScoped<IOperatorService, OperatorService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IMembershipRepository, MembershipRepository>();
-builder.Services.AddScoped<IMembershipService, MembershipService>();
 builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<IStayRepository, StayRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
+
+// --- Servicios de Lógica de Negocio ---
+builder.Services.AddScoped<IOperatorService, OperatorService>();
+builder.Services.AddScoped<IMembershipService, MembershipService>();
 builder.Services.AddScoped<IRateService, RateService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IReportsService, ReportsService>();
+builder.Services.AddScoped<IExportService, ExportService>();
 
-// Registra los servicios necesarios para los controladores de API
+// --- Servicio en Segundo Plano (Hosted Service) ---
+builder.Services.AddHostedService<MembershipExpirationNotifier>();
+
+// --- Servicios del Framework ---
 builder.Services.AddControllers();
-
-// Registra los servicios para la generación de la documentación de Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// --- 2. Construcción de la Aplicación ---
-
+// =================================================================
+// 2. CONSTRUCCIÓN DE LA APLICACIÓN
+// =================================================================
 var app = builder.Build();
 
 
-// --- 3. Configuración del Pipeline de Peticiones HTTP ---
+// =================================================================
+// 3. CONFIGURACIÓN DEL PIPELINE DE PETICIONES HTTP
+// =================================================================
 
 // Habilita Swagger solo en el entorno de desarrollo
 if (app.Environment.IsDevelopment())
@@ -55,11 +86,14 @@ if (app.Environment.IsDevelopment())
 // Redirige las peticiones HTTP a HTTPS
 app.UseHttpsRedirection();
 
-// ¡ESTA ES LA LÍNEA QUE FALTABA!
+// Aplica la política de CORS
+app.UseCors(MyAllowSpecificOrigins);
+
 // Activa el enrutamiento para que las peticiones lleguen a los controladores correctos
 app.MapControllers();
 
 
-// --- 4. Ejecución de la Aplicación ---
-
+// =================================================================
+// 4. EJECUCIÓN DE LA APLICACIÓN
+// =================================================================
 app.Run();

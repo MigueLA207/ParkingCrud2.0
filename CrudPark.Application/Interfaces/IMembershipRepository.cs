@@ -10,6 +10,10 @@ namespace CrudPark.Application.Interfaces
         Task<Membership?> FindOverlappingMembershipAsync(string licensePlate, string vehicleType, DateTime startDate, DateTime endDate);
         Task<Membership> AddAsync(Membership membership);
         Task UpdateAsync(Membership membership);
+        Task<IEnumerable<Membership>> GetMembershipsExpiringOnDateAsync(DateTime expirationDate);
+        Task<int> CountActiveAsync(DateTime date);
+        Task<int> CountExpiringSoonAsync(DateTime startDate, DateTime endDate);
+        Task<int> CountExpiredAsync(DateTime date);
         
     }
 }

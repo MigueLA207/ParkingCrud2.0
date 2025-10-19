@@ -65,6 +65,29 @@ namespace CrudPark.Infrastructure.Repositories
         {
             return await _context.Memberships.Include(m => m.Customer).FirstOrDefaultAsync(m => m.MembershipId == id);
         }
+        
+        public async Task<IEnumerable<Membership>> GetMembershipsExpiringOnDateAsync(DateTime expirationDate)
+        {
+            return await _context.Memberships
+                .Include(m => m.Customer) 
+                .Where(m => m.IsActive && m.EndDate.Date == expirationDate.Date)
+                .ToListAsync();
+        }
+        
+        public async Task<int> CountActiveAsync(DateTime date)
+        {
+            return await _context.Memberships.CountAsync(m => m.IsActive && date >= m.StartDate && date <= m.EndDate);
+        }
+
+        public async Task<int> CountExpiringSoonAsync(DateTime startDate, DateTime endDate)
+        {
+            return await _context.Memberships.CountAsync(m => m.IsActive && m.EndDate > startDate && m.EndDate <= endDate);
+        }
+    
+        public async Task<int> CountExpiredAsync(DateTime date)
+        {
+            return await _context.Memberships.CountAsync(m => m.IsActive && m.EndDate < date);
+        }
 
         
     }

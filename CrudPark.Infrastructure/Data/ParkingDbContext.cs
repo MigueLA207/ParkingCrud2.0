@@ -15,6 +15,10 @@ public class ParkingDbContext : DbContext
     
     public DbSet<Rate> Rates { get; set; }
     
+    public DbSet<Payment> Payments { get; set; }
+    
+    public DbSet<Stay> Stays { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
