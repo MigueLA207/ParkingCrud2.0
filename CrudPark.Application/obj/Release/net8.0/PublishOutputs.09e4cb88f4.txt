@@ -1,0 +1,6 @@
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\CrudPark.Application.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\CrudPark.Application.deps.json
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\CrudPark.Application.pdb
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\BCrypt.Net-Next.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Application\bin\Release\net8.0\publish\CrudPark.Core.pdb

@@ -1,0 +1,8 @@
+﻿services:
+  api:
+    build: .
+    image: 27masaki/render-deploy
+    ports:
+      - "3000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production

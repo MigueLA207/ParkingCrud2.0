@@ -1,0 +1,3 @@
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Release\net8.0\publish\CrudPark.Core.dll
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Release\net8.0\publish\CrudPark.Core.deps.json
+C:\Users\maria\RiderProjects\ParkingCrud\CrudPark.Core\bin\Release\net8.0\publish\CrudPark.Core.pdb

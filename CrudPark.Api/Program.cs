@@ -77,11 +77,11 @@ var app = builder.Build();
 // =================================================================
 
 // Habilita Swagger solo en el entorno de desarrollo
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+app.UseSwagger();
+app.UseSwaggerUI();
+// }
 
 // Redirige las peticiones HTTP a HTTPS
 app.UseHttpsRedirection();
