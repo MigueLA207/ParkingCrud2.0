@@ -66,7 +66,7 @@ public class ReportsController : ControllerBase
 
 
         var csvBytes = _exportService.GenerateDailyIncomeCsv(reportData);
-
+    
 
         var fileName = $"IngresosDiarios_{startDate:yyyyMMdd}_a_{endDate:yyyyMMdd}.csv";
     
