@@ -1,45 +1,61 @@
 using CrudPark.Application.DTOs;
 using CrudPark.Application.Interfaces;
+using Microsoft.Extensions.Configuration;
 
-
-namespace CrudPark.Application.Services;
-
-public class DashboardService : IDashboardService
+namespace CrudPark.Application.Services
 {
-    private readonly IMembershipRepository _membershipRepo;
-    private readonly IStayRepository _stayRepo;
-    private readonly IPaymentRepository _paymentRepo;
-    
-    public DashboardService(IMembershipRepository membershipRepo, IStayRepository stayRepo, IPaymentRepository paymentRepo)
+    public class DashboardService : IDashboardService
     {
-        _membershipRepo = membershipRepo;
-        _stayRepo = stayRepo;
-        _paymentRepo = paymentRepo;
-    }
-    
-    public async Task<DashboardDto> GetDashboardMetricsAsync()
-    {
-        var today = DateTime.UtcNow.Date;
-        var soonDate = today.AddDays(3);
+        private readonly IStayRepository _stayRepo;
+        private readonly IPaymentRepository _paymentRepo;
+        private readonly IMembershipRepository _membershipRepo;
+        private readonly IConfiguration _configuration;
 
-        // Cada cálculo se delega al repositorio correspondiente
-        int vehiclesInside = await _stayRepo.CountVehiclesInsideAsync();
-        decimal incomeToday = await _paymentRepo.GetTotalIncomeForDateAsync(today);
-        int activeMemberships = await _membershipRepo.CountActiveAsync(today);
-        int expiringSoonMemberships = await _membershipRepo.CountExpiringSoonAsync(today, soonDate);
-        int expiredMemberships = await _membershipRepo.CountExpiredAsync(today);
-
-        // Construimos el DTO igual que antes
-        var dashboardData = new DashboardDto
+        public DashboardService(
+            IStayRepository stayRepo,
+            IPaymentRepository paymentRepo,
+            IMembershipRepository membershipRepo,
+            IConfiguration configuration)
         {
-            VehiclesCurrentlyInside = vehiclesInside,
-            IncomeToday = incomeToday,
-            MembershipsActive = activeMemberships,
-            MembershipsExpiringSoon = expiringSoonMemberships,
-            MembershipsExpired = expiredMemberships
-        };
+            _stayRepo = stayRepo;
+            _paymentRepo = paymentRepo;
+            _membershipRepo = membershipRepo;
+            _configuration = configuration;
+        }
 
-        return dashboardData;
+        public async Task<DashboardDto> GetDashboardMetricsAsync()
+        {
+            var today = DateTime.UtcNow.Date;
+            var soonDate = today.AddDays(3);
+
+            // --- EJECUTAMOS LAS CONSULTAS DE FORMA SECUENCIAL ---
+            // Cada 'await' espera a que la operación anterior termine antes de continuar.
+            
+            int vehiclesInside = await _stayRepo.CountVehiclesInsideAsync();
+            decimal incomeToday = await _paymentRepo.GetTotalIncomeForDateAsync(today);
+            int activeMemberships = await _membershipRepo.CountActiveAsync(today);
+            int expiringSoonMemberships = await _membershipRepo.CountExpiringSoonAsync(today, soonDate);
+            int expiredMemberships = await _membershipRepo.CountExpiredAsync(today);
+            
+            // --- CÁLCULO DE OCUPACIÓN (AHORA ES SEGURO HACERLO) ---
+            double occupationPercentage = 0.0;
+            var totalSpaces = _configuration.GetValue<int>("AppSettings:TotalParkingSpaces");
+
+            if (totalSpaces > 0 && vehiclesInside > 0)
+            {
+                occupationPercentage = ((double)vehiclesInside / totalSpaces) * 100;
+            }
+
+            // --- CONSTRUIMOS EL DTO CON LOS RESULTADOS YA OBTENIDOS ---
+            return new DashboardDto
+            {
+                VehiclesCurrentlyInside = vehiclesInside,
+                OccupationPercentage = Math.Round(occupationPercentage, 2),
+                IncomeToday = incomeToday,
+                MembershipsActive = activeMemberships,
+                MembershipsExpiringSoon = expiringSoonMemberships,
+                MembershipsExpired = expiredMemberships
+            };
+        }
     }
-    
 }
