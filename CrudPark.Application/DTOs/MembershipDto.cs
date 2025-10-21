@@ -1,4 +1,4 @@
-﻿// Archivo: CrudPark.Application/DTOs/MembershipDto.cs
+﻿
 namespace CrudPark.Application.DTOs
 {
     public class MembershipDto
@@ -10,7 +10,7 @@ namespace CrudPark.Application.DTOs
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
 
-        // Datos del cliente asociado
+
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string? CustomerEmail { get; set; }

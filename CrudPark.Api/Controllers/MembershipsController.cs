@@ -1,4 +1,4 @@
-﻿// Archivo: CrudPark.Api/Controllers/MembershipsController.cs
+﻿
 using CrudPark.Application.DTOs;
 using CrudPark.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -31,9 +31,7 @@ namespace CrudPark.Api.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                // Si el servicio lanzó nuestra excepción de negocio, devolvemos un 409 Conflict.
-                // Es un código de estado que significa "La petición no se pudo completar
-                // debido a un conflicto con el estado actual del recurso."
+
                 return Conflict(new { message = ex.Message });
             }
         }
@@ -45,7 +43,7 @@ namespace CrudPark.Api.Controllers
             return Ok(memberships);
         }
 
-        // GET /api/memberships/5
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMembershipById(int id)
         {
@@ -57,7 +55,7 @@ namespace CrudPark.Api.Controllers
             return Ok(membership);
         }
 
-        // PUT /api/memberships/5
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMembership(int id, [FromBody] UpdateMembershipDto updateDto)
         {
@@ -78,7 +76,6 @@ namespace CrudPark.Api.Controllers
             }
         }
 
-        // DELETE /api/memberships/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMembership(int id)
         {

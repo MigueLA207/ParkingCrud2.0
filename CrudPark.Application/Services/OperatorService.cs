@@ -1,8 +1,8 @@
-// Archivo: CrudPark.Application/Services/OperatorService.cs
+
 using CrudPark.Application.DTOs;
 using CrudPark.Application.Interfaces;
 using CrudPark.Core.Entities;
-using BCrypt.Net; // ¡Importante!
+using BCrypt.Net; 
 
 namespace CrudPark.Application.Services
 {
@@ -57,13 +57,13 @@ namespace CrudPark.Application.Services
         {
             var op = await _operatorRepository.GetByIdAsync(id);
 
-            // Si el operador no se encuentra, devolvemos null.
+      
             if (op == null)
             {
                 return null;
             }
 
-            // Si se encuentra, lo mapeamos a su DTO y lo devolvemos.
+     
             return new OperatorDto
             {
                 OperatorId = op.OperatorId,
@@ -78,17 +78,17 @@ namespace CrudPark.Application.Services
             var existingOperator = await _operatorRepository.GetByIdAsync(id);
             if (existingOperator == null)
             {
-                return null; // Operador no encontrado
+                return null; 
             }
 
-            // Mapeamos los campos del DTO a la entidad existente
+
             existingOperator.FullName = updateOperatorDto.FullName;
             existingOperator.Email = updateOperatorDto.Email;
             existingOperator.IsActive = updateOperatorDto.IsActive;
 
             await _operatorRepository.UpdateAsync(existingOperator);
 
-            // Mapeamos la entidad actualizada a un DTO para la respuesta
+     
             return new OperatorDto
             {
                 OperatorId = existingOperator.OperatorId,

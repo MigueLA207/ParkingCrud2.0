@@ -17,19 +17,19 @@ namespace CrudPark.Infrastructure.Repositories
 
         public async Task<IEnumerable<DailyIncomeDto>> GetDailyIncomeAsync(DateTime startDate, DateTime endDate)
         {
-            // Esta es la consulta LINQ que se traducirá a SQL
+
             return await _context.Payments
-                // 1. Filtramos los pagos que están dentro del rango de fechas
+
                 .Where(p => p.PaymentTimestamp.Date >= startDate.Date && p.PaymentTimestamp.Date <= endDate.Date)
-                // 2. Agrupamos todos los pagos por el día en que se hicieron
+       
                 .GroupBy(p => p.PaymentTimestamp.Date)
-                // 3. Proyectamos los resultados en nuestro DTO
+
                 .Select(group => new DailyIncomeDto
                 {
-                    Date = DateOnly.FromDateTime(group.Key), // La clave del grupo es la fecha
-                    TotalAmount = group.Sum(p => p.Amount) // Sumamos el monto de todos los pagos de ese día
+                    Date = DateOnly.FromDateTime(group.Key), 
+                    TotalAmount = group.Sum(p => p.Amount) 
                 })
-                // 4. Ordenamos por fecha para que la gráfica se vea bien
+
                 .OrderBy(dto => dto.Date)
                 .ToListAsync();
         }

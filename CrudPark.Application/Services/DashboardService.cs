@@ -37,7 +37,7 @@ namespace CrudPark.Application.Services
             int expiringSoonMemberships = await _membershipRepo.CountExpiringSoonAsync(today, soonDate);
             int expiredMemberships = await _membershipRepo.CountExpiredAsync(today);
             
-            // --- CÁLCULO DE OCUPACIÓN (AHORA ES SEGURO HACERLO) ---
+
             double occupationPercentage = 0.0;
             var totalSpaces = _configuration.GetValue<int>("AppSettings:TotalParkingSpaces");
 
@@ -46,7 +46,7 @@ namespace CrudPark.Application.Services
                 occupationPercentage = ((double)vehiclesInside / totalSpaces) * 100;
             }
 
-            // --- CONSTRUIMOS EL DTO CON LOS RESULTADOS YA OBTENIDOS ---
+
             return new DashboardDto
             {
                 VehiclesCurrentlyInside = vehiclesInside,

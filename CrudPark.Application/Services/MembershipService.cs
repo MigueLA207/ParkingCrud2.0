@@ -1,4 +1,4 @@
-﻿// Archivo: CrudPark.Application/Services/MembershipService.cs
+﻿
 using CrudPark.Application.DTOs;
 using CrudPark.Application.Interfaces;
 using CrudPark.Core.Entities;
@@ -45,7 +45,6 @@ namespace CrudPark.Application.Services
                 await _customerRepo.AddAsync(customer);
             }
 
-            // PASO 3: CREAR LA NUEVA MENSUALIDAD (Ahora sin desactivar nada)
             var newMembership = new Membership
             {
                 CustomerId = customer.CustomerId,
@@ -53,7 +52,7 @@ namespace CrudPark.Application.Services
                 VehicleType = createDto.VehicleType,
                 StartDate = newStartDate,
                 EndDate = newEndDate,
-                IsActive = true // La creamos como activa
+                IsActive = true 
             };
 
             var createdEntity = await _membershipRepo.AddAsync(newMembership);
@@ -102,24 +101,24 @@ namespace CrudPark.Application.Services
             var existingMembership = await _membershipRepo.GetByIdAsync(id);
             if (existingMembership == null)
             {
-                return null; // No encontrado
+                return null; 
             }
 
-            // Validar que las nuevas fechas no se solapen con OTRA membresía existente
+
             var overlapping = await _membershipRepo.FindOverlappingMembershipAsync(
                 existingMembership.LicensePlate,
                 existingMembership.VehicleType,
                 updateDto.StartDate.ToUniversalTime(),
                 updateDto.EndDate.ToUniversalTime());
 
-            // Si se solapa con una membresía que NO es ella misma, es un error.
+ 
             if (overlapping != null && overlapping.MembershipId != id)
             {
                 throw new InvalidOperationException(
                     $"La actualización entra en conflicto con otra mensualidad existente (ID: {overlapping.MembershipId}).");
             }
 
-            // Actualizamos los campos
+
             existingMembership.StartDate = updateDto.StartDate.ToUniversalTime();
             existingMembership.EndDate = updateDto.EndDate.ToUniversalTime();
             existingMembership.IsActive = updateDto.IsActive;
@@ -131,17 +130,17 @@ namespace CrudPark.Application.Services
 
         public async Task<bool> DeleteMembershipAsync(int id)
         {
-            // 1. Buscamos la mensualidad
+
             var membership = await _membershipRepo.GetByIdAsync(id);
             if (membership == null)
             {
-                return false; // No se encontró, no se pudo "eliminar"
+                return false; 
             }
 
-            // 2. Aplicamos la lógica de negocio: "borrar" es en realidad "desactivar"
+
             membership.IsActive = false;
 
-            // 3. Usamos el método de actualización para guardar el cambio
+
             await _membershipRepo.UpdateAsync(membership);
 
             return true;

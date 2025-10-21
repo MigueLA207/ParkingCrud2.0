@@ -28,20 +28,15 @@ public class RateRepository : IRateRepository
         _context.Rates.Remove(rate);
         await _context.SaveChangesAsync();
     }
-    
-    // Lógica de negocio: Cuando una tarifa se marca como activa,
-    // todas las demás deben desactivarse.
+
     public async Task DeactivateAllOthersAsync(int newActiveRateId, string vehicleType)
     {
-        // Busca todas las tarifas que:
-        // 1. Estén activas (IsActive)
-        // 2. Sean del MISMO tipo de vehículo
-        // 3. NO sean la que acabamos de activar
+
         await _context.Rates
             .Where(r => r.IsActive && 
                         r.VehicleType == vehicleType && 
                         r.RateId != newActiveRateId)
-            .ForEachAsync(r => r.IsActive = false); // Y las desactiva
+            .ForEachAsync(r => r.IsActive = false); 
 
         await _context.SaveChangesAsync();
     }

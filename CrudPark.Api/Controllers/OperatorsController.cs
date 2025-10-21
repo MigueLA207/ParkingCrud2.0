@@ -42,14 +42,11 @@ namespace CrudPark.Api.Controllers
         {
             var operatorDto = await _operatorService.GetOperatorByIdAsync(id);
 
-            // Si el servicio devuelve null (porque no lo encontró),
-            // devolvemos un error HTTP 404 Not Found.
             if (operatorDto == null)
             {
                 return NotFound();
             }
 
-            // Si lo encontró, devolvemos un 200 OK con los datos del operador.
             return Ok(operatorDto);
         }
         
@@ -66,7 +63,6 @@ namespace CrudPark.Api.Controllers
             return Ok(updatedOperator);
         }
 
-        // DELETE /api/operators/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOperator(int id)
         {
@@ -77,7 +73,7 @@ namespace CrudPark.Api.Controllers
                 return NotFound($"Operator with ID {id} not found.");
             }
 
-            return NoContent(); // 204 NoContent es la respuesta estándar para un DELETE exitoso
+            return NoContent(); 
         }
         
         

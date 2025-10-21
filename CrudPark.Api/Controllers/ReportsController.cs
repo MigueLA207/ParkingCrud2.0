@@ -1,4 +1,4 @@
-// Archivo: CrudPark.Api/Controllers/ReportsController.cs
+
 using CrudPark.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +15,7 @@ public class ReportsController : ControllerBase
         _exportService = exportService;
     }
 
-    // Endpoint: GET /api/reports/daily-income?startDate=2025-10-01&endDate=2025-10-17
+
     [HttpGet("daily-income")]
     public async Task<IActionResult> GetDailyIncomeReport([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
     {

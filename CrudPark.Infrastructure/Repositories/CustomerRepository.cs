@@ -1,4 +1,4 @@
-﻿// Archivo: CrudPark.Infrastructure/Repositories/CustomerRepository.cs
+﻿
 using CrudPark.Application.Interfaces;
 using CrudPark.Core.Entities;
 using CrudPark.Infrastructure.Data;

@@ -23,7 +23,7 @@ public class ParkingDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // --- Mapeo para Operator ---
+
         modelBuilder.Entity<Operator>(entity =>
         {
             entity.ToTable("operators");
@@ -36,7 +36,7 @@ public class ParkingDbContext : DbContext
             entity.Property(e => e.CreatedAt).HasColumnName("created_at");
         });
 
-        // --- Mapeo para Customer ---
+
         modelBuilder.Entity<Customer>(entity =>
         {
             entity.ToTable("customers");
@@ -46,7 +46,6 @@ public class ParkingDbContext : DbContext
             entity.Property(e => e.Email).HasColumnName("email");
         });
 
-        // --- Mapeo para Membership ---
         modelBuilder.Entity<Membership>(entity =>
         {
             entity.ToTable("memberships");
@@ -59,7 +58,6 @@ public class ParkingDbContext : DbContext
             entity.Property(e => e.EndDate).HasColumnName("end_date");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
 
-            // Define la relación entre las tablas
             entity.HasOne(m => m.Customer)
                 .WithMany(c => c.Memberships)
                 .HasForeignKey(m => m.CustomerId);
