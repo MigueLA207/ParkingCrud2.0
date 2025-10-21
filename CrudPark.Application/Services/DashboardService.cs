@@ -25,11 +25,11 @@ namespace CrudPark.Application.Services
 
         public async Task<DashboardDto> GetDashboardMetricsAsync()
         {
-            var today = DateTime.UtcNow.Date;
+            var today = DateTime.Now.Date;
+            Console.WriteLine("Me cago en todooooo");
+            Console.WriteLine(today);
             var soonDate = today.AddDays(3);
-
-            // --- EJECUTAMOS LAS CONSULTAS DE FORMA SECUENCIAL ---
-            // Cada 'await' espera a que la operación anterior termine antes de continuar.
+            
             
             int vehiclesInside = await _stayRepo.CountVehiclesInsideAsync();
             decimal incomeToday = await _paymentRepo.GetTotalIncomeForDateAsync(today);
