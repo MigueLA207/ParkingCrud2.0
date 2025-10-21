@@ -25,7 +25,9 @@ namespace CrudPark.Application.Services
 
         public async Task<DashboardDto> GetDashboardMetricsAsync()
         {
-            var today = DateTime.Now.Date;
+            // var today = DateTime.Now.Date;
+            var zonaColombia = TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
+            var today = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, zonaColombia).Date;
             Console.WriteLine("Fecha que vamos a enviar");
             Console.WriteLine(today);
             var soonDate = today.AddDays(3);
