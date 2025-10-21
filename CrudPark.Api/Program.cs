@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
     {
         policy.WithOrigins(
-                "https://crudpark.netlify.app"
+                "https://crudpark.netlify.app", "http://localhost:5173"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
