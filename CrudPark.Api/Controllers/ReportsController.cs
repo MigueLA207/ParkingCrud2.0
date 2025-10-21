@@ -60,17 +60,9 @@ public class ReportsController : ControllerBase
         {
             return BadRequest("La fecha de inicio no puede ser posterior a la fecha de fin.");
         }
-
-
         var reportData = await _reportsService.GetDailyIncomeReportAsync(startDate, endDate);
-
-
         var csvBytes = _exportService.GenerateDailyIncomeCsv(reportData);
-    
-
         var fileName = $"IngresosDiarios_{startDate:yyyyMMdd}_a_{endDate:yyyyMMdd}.csv";
-    
-
         return File(csvBytes, "text/csv", fileName);
     }
 }

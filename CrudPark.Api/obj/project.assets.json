@@ -1818,6 +1818,7 @@
     "net9.0": [
       "CrudPark.Application >= 1.0.0",
       "CrudPark.Infrastructure >= 1.0.0",
+      "CsvHelper >= 33.1.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.21",
       "Microsoft.Extensions.Configuration >= 9.0.10",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.10",
@@ -1885,6 +1886,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "CsvHelper": {
+            "target": "Package",
+            "version": "[33.1.0, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.21, )"
