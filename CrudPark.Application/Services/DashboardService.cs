@@ -26,7 +26,7 @@ namespace CrudPark.Application.Services
         public async Task<DashboardDto> GetDashboardMetricsAsync()
         {
             var today = DateTime.Now.Date;
-            Console.WriteLine("Me cago en todooooo");
+            Console.WriteLine("Fecha que vamos a enviar");
             Console.WriteLine(today);
             var soonDate = today.AddDays(3);
             

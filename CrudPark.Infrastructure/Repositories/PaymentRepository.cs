@@ -10,6 +10,7 @@ public class PaymentRepository : IPaymentRepository {
     
     public async Task<decimal> GetTotalIncomeForDateAsync(DateTime date)
     {
+        Console.WriteLine("Esta es la fecha que llegó: ");
         Console.WriteLine(date.Date);
 
         var data = await _context.Payments
