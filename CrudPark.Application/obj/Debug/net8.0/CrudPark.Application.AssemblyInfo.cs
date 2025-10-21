@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CrudPark.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d713788ec64d2f433b6abbe40a70b2ff25b34e8d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5389127ab9f2fa5847320fbfdadce42e6b4d7182")]
 [assembly: System.Reflection.AssemblyProductAttribute("CrudPark.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CrudPark.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
